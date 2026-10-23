@@ -1,0 +1,1412 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Camello. - Prerregístrate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --camello: #7809d9;
+      --camello-sec: #2b0054;
+      --camello-terc: #ac8bff;
+      --camello-light: #f3f3f3;
+      --camello-dark: #000000;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--camello);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--camello);
+      padding: 8px 6vw 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: -24px;
+      font-weight: 700;
+      font-size: 33px;
+    }
+
+    .brand img { height: 78px; width: auto; }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      padding: 56px 6vw 0;
+      min-height: 680px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 54px;
+      line-height: 1.08;
+      font-weight: 700;
+      max-width: 620px;
+    }
+
+    .marker {
+      position: relative;
+      display: inline-block;
+      isolation: isolate;
+      color: var(--camello-sec);
+      padding: 0 14px;
+      transform: rotate(-1.5deg);
+      line-height: 1.15;
+    }
+
+    .marker::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: #FF8A1F;
+      border-radius: 10px;
+      transform-origin: left center;
+      transform: scaleX(0);
+      animation: marker-in 0.8s ease-out 0.5s forwards;
+    }
+
+    @keyframes marker-in {
+      to { transform: scaleX(1); }
+    }
+
+    .hero-info {
+      margin-top: 28px;
+      max-width: 270px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .hero-info p { margin-bottom: 16px; }
+    .hero-info strong { font-weight: 700; }
+
+    .painter {
+      position: absolute;
+      left: -20px;
+      bottom: 0;
+      height: 480px;
+      width: auto;
+      pointer-events: none;
+    }
+
+    .note {
+      position: absolute;
+      top: 24px;
+      right: calc(6vw + 400px);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-family: "Caveat", cursive;
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--camello-terc);
+      transform: rotate(-4deg);
+      pointer-events: none;
+    }
+
+    .note svg {
+      width: 170px;
+      height: 110px;
+      margin-top: 4px;
+      stroke: var(--camello-terc);
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+
+    .form-card {
+      position: relative;
+      z-index: 1;
+      align-self: start;
+      margin-top: 0;
+      background: var(--camello-sec);
+      border-radius: 18px;
+      padding: 20px 10px 14px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.35), 0 0 70px rgba(172, 139, 255, 0.55);
+      animation: form-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes form-glow {
+      0%, 100% { box-shadow: 0 0 24px rgba(255, 255, 255, 0.3), 0 0 60px rgba(172, 139, 255, 0.45); }
+      50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.55), 0 0 90px rgba(172, 139, 255, 0.75); }
+    }
+
+    .form-title {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 0 10px;
+      color: var(--white);
+    }
+
+    .form-panel {
+      background: var(--camello-light);
+      border-radius: 12px;
+      padding: 18px 18px 22px;
+      color: var(--camello-dark);
+    }
+
+    form { display: grid; gap: 14px; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    label small { font-weight: 600; color: #555; }
+
+    input, select, textarea {
+      width: 100%;
+      font: inherit;
+      font-size: 14px;
+      padding: 9px 10px;
+      border: 1px solid #3a3a3a;
+      border-radius: 8px;
+      background: var(--camello-light);
+      color: var(--camello-dark);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--camello-terc);
+      outline-offset: 0;
+    }
+
+    textarea { min-height: 56px; resize: vertical; }
+
+    .otro { margin-top: 8px; }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 400;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    .consent input { width: auto; margin-top: 2px; }
+
+    .btn {
+      font: inherit;
+      font-weight: 700;
+      font-size: 18px;
+      background: var(--camello-sec);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      height: 54px;
+      margin-top: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover { background: #3f0a7a; }
+    .btn:disabled { opacity: 0.6; cursor: wait; }
+
+    .error { color: #b00020; font-size: 12px; min-height: 0; }
+    .error:empty { display: none; }
+
+    .thanks { display: none; text-align: center; padding: 28px 0; color: var(--camello-dark); }
+    .thanks h3 { color: var(--camello-sec); font-size: 20px; margin-bottom: 8px; }
+    .thanks p { font-size: 14px; color: #444; }
+
+    .pains {
+      position: relative;
+      background: var(--white);
+      color: var(--camello-dark);
+      padding: 80px 6vw;
+      text-align: center;
+    }
+
+    .note-soft {
+      position: absolute;
+      left: calc(50% + 230px);
+      top: 110px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "Caveat", cursive;
+      font-size: 38px;
+      font-weight: 600;
+      line-height: 1;
+      color: var(--camello);
+      transform: rotate(-4deg);
+      pointer-events: none;
+    }
+
+    .note-soft svg {
+      width: 90px;
+      height: 60px;
+      stroke: var(--camello);
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--camello);
+      margin-bottom: 12px;
+    }
+
+    .pains h2 {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--camello-sec);
+      margin-bottom: 64px;
+    }
+
+    .stack {
+      display: grid;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .stack-front {
+      color: var(--camello-sec);
+      text-align: left;
+    }
+
+    .pain {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 34px 40px;
+      font-size: 27px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .pain + .pain { border-top: 1px solid rgba(43, 0, 84, 0.15); }
+
+    .num {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #FF8A1F;
+      box-shadow: 0 8px 18px rgba(255, 138, 31, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .num svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .how {
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+      color: var(--camello-dark);
+      padding: 80px 6vw;
+      text-align: center;
+    }
+
+    .how-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .how-bg path { fill: var(--camello); }
+
+    .how .eyebrow { color: var(--camello-terc); }
+
+    .how h2 { color: var(--white); }
+
+    .how .step h3 { color: var(--white); }
+
+    .how .step p { color: rgba(255, 255, 255, 0.9); }
+
+    .how .eyebrow,
+    .how h2,
+    .how .steps {
+      position: relative;
+      z-index: 1;
+    }
+
+    .how h2 {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 56px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1120px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .step-num {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--camello);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      box-shadow: 0 0 22px rgba(255, 255, 255, 0.6);
+    }
+
+    .step-num::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      bottom: -10%;
+      left: -60%;
+      width: 40%;
+      background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+      pointer-events: none;
+      animation: vip-shine 3.2s ease-in-out infinite;
+    }
+
+    .step h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--camello-sec);
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 17px;
+      line-height: 1.5;
+      color: #444;
+    }
+
+    .profile {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+      gap: 40px;
+      background: var(--white);
+      color: var(--camello-dark);
+      padding: 24px 6vw 24px;
+    }
+
+    .profile-copy {
+      align-self: center;
+    }
+
+    .profile-copy h2 {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--camello-sec);
+      margin-bottom: 18px;
+      line-height: 1.1;
+    }
+
+    .profile-list {
+      list-style: none;
+      font-size: 27px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--camello-sec);
+      max-width: 420px;
+      margin: 40px 0 0 28px;
+    }
+
+    .profile-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .profile-list li + li { margin-top: 44px; }
+
+    .ico {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #FF8A1F;
+    }
+
+    .ico svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .profile .eyebrow { text-align: left; }
+
+    .cm-section {
+      display: flex;
+      justify-content: center;
+      background: var(--white);
+      border-radius: 28px;
+      padding: 56px 16px 0;
+      overflow: hidden;
+    }
+
+    .cm-phone {
+      width: 340px;
+      max-width: 100%;
+      background: #1E0638;
+      border-radius: 44px 44px 0 0;
+      padding: 22px 22px 28px;
+      transform: rotate(-5deg) translateY(12px);
+      box-shadow: 0 30px 60px rgba(42, 0, 82, 0.28);
+      color: var(--white);
+    }
+
+    .cm-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .cm-notch { width: 56px; height: 16px; background: #000; border-radius: 10px; }
+    .cm-logo { font-weight: 800; font-size: 22px; letter-spacing: -0.3px; }
+    .cm-icon { width: 22px; height: 22px; }
+
+    .cm-label {
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      color: #C9B3EA;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cm-label svg { width: 13px; height: 13px; }
+
+    .cm-card { background: #33105A; border-radius: 22px; padding: 22px 18px; text-align: center; }
+
+    .cm-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      margin: 0 auto 14px;
+      background: linear-gradient(135deg, #9B3BF0, #5A0AA8);
+      border: 3px solid #FFC83D;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cm-avatar svg { display: block; }
+
+    .cm-name { font-size: 21px; font-weight: 700; margin-bottom: 4px; }
+    .cm-service { font-size: 14px; color: #C9B3EA; margin-bottom: 10px; }
+    .cm-rating { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; margin-bottom: 16px; }
+    .cm-stars { color: #FFC83D; letter-spacing: 1px; }
+    .cm-count { color: #C9B3EA; font-weight: 400; }
+
+    .cm-stats { display: flex; gap: 8px; }
+    .cm-stat { flex: 1; background: rgba(255, 255, 255, 0.07); border-radius: 14px; padding: 12px 6px; }
+    .cm-stat strong { display: block; font-size: 20px; font-weight: 800; }
+    .cm-stat strong.cm-price { color: #FFC83D; }
+    .cm-stat small { font-size: 11px; color: #C9B3EA; }
+
+    .cm-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 22px; }
+    .cm-tag {
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .cm-btn {
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+      background: #FFC83D;
+      color: #2A0052;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 15px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .cm-btn svg { width: 19px; height: 19px; }
+
+    .cta-img {
+      display: block;
+      width: 85vw;
+      max-width: none;
+      height: auto;
+      margin: -40px auto 0;
+      position: relative;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .vip {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      justify-content: center;
+      background: var(--camello);
+      padding: 96px 6vw 110px;
+    }
+
+    .vip-waves {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 0;
+    }
+
+    .vip-waves path { fill: var(--white); }
+
+    .vip-waves-bottom {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 80px;
+      z-index: 0;
+    }
+
+    .vip-waves-bottom path { fill: var(--white); }
+
+    .vip-wrap { position: relative; z-index: 1; }
+
+    .vip-dots {
+      position: absolute;
+      top: 70px;
+      bottom: 70px;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .vip-dot {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      background: #FF8A1F;
+      border-radius: 58% 42% 53% 47% / 46% 56% 44% 54%;
+    }
+
+    .vip-dot:nth-child(3n + 1) {
+      border-radius: 42% 58% 38% 62% / 55% 45% 55% 45%;
+      transform: rotate(18deg);
+    }
+
+    .vip-dot:nth-child(3n + 2) {
+      border-radius: 62% 38% 47% 53% / 40% 60% 40% 60%;
+      transform: rotate(-12deg);
+    }
+
+    .vip-wrap {
+      filter: drop-shadow(0 0 28px rgba(255, 200, 61, 0.6));
+    }
+
+    .vip-star {
+      position: relative;
+      overflow: hidden;
+      width: 340px;
+      height: 340px;
+      display: grid;
+      place-items: center;
+      padding: 0 70px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--camello-sec);
+      background: linear-gradient(135deg, #FFE27A 0%, #FFC83D 55%, #F2A900 100%);
+      clip-path: polygon(
+        50% 0%, 64.5% 14.9%, 85.4% 14.6%, 85.1% 35.5%,
+        100% 50%, 85.1% 64.5%, 85.4% 85.4%, 64.5% 85.1%,
+        50% 100%, 35.5% 85.1%, 14.6% 85.4%, 14.9% 64.5%,
+        0% 50%, 14.9% 35.5%, 14.6% 14.6%, 35.5% 14.9%
+      );
+      cursor: pointer;
+    }
+
+    .vip-star::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      bottom: -10%;
+      left: -60%;
+      width: 40%;
+      background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+      pointer-events: none;
+      animation: vip-shine 3.2s ease-in-out infinite;
+    }
+
+    @keyframes vip-shine {
+      0%, 100% { left: -60%; }
+      60% { left: 120%; }
+    }
+
+    .vip-default,
+    .vip-alt {
+      grid-area: 1 / 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .vip-alt { opacity: 0; }
+
+    .vip-star:hover .vip-default { opacity: 0; }
+    .vip-star:hover .vip-alt { opacity: 1; }
+
+    .cta {
+      background: var(--white);
+      text-align: center;
+      padding: 80px 6vw 0;
+    }
+
+    .cta p {
+      position: relative;
+      display: inline-block;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--camello-sec);
+      margin-bottom: 28px;
+    }
+
+    .burst {
+      position: absolute;
+      top: 50%;
+      width: 84px;
+      height: 100px;
+      transform: translateY(-50%);
+      stroke: #FF8A1F;
+      stroke-width: 7;
+      stroke-linecap: round;
+      fill: none;
+    }
+
+    .burst-l { left: -112px; }
+    .burst-r { right: -112px; }
+
+    .cta-btn {
+      position: relative;
+      z-index: 1;
+      display: table;
+      margin: 0 auto;
+      background: var(--camello);
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 16px 40px;
+      border-radius: 12px;
+      transition: background 0.2s ease;
+    }
+
+    .cta-btn:hover { background: var(--camello-sec); }
+
+    .typed-wrap {
+      display: inline-grid;
+    }
+
+    .typed-wrap > span {
+      grid-area: 1 / 1;
+      text-align: left;
+    }
+
+    .typed-ghost { visibility: hidden; }
+
+    .typed::after {
+      content: "";
+      display: inline-block;
+      width: 3px;
+      height: 0.9em;
+      margin-left: 4px;
+      vertical-align: -0.1em;
+      background: var(--camello);
+      animation: caret-blink 0.8s steps(1) infinite;
+    }
+
+    .typed.done::after { display: none; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @keyframes caret-blink {
+      50% { opacity: 0; }
+    }
+
+    .btn,
+    .cta-btn {
+      animation: btn-glow 2.6s ease-in-out infinite;
+    }
+
+    @keyframes btn-glow {
+      0%, 100% { box-shadow: 0 0 14px rgba(255, 255, 255, 0.3), 0 0 30px rgba(172, 139, 255, 0.45); }
+      50% { box-shadow: 0 0 26px rgba(255, 255, 255, 0.6), 0 0 54px rgba(172, 139, 255, 0.8); }
+    }
+
+    .lista-vip { position: relative; }
+
+    .lista-vip > .vip-wave:first-child,
+    .lista-vip > .vip-wave:last-child {
+      position: absolute;
+      left: 0;
+      z-index: 2;
+    }
+
+    .lista-vip > .vip-wave:first-child { top: 0; }
+    .lista-vip > .vip-wave:last-child { bottom: 0; }
+
+    footer {
+      background: var(--camello-sec);
+      color: var(--camello-terc);
+      text-align: center;
+      padding: 24px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      h1 { font-size: 40px; }
+      .hero { grid-template-columns: 1fr; padding-bottom: 40px; min-height: 0; }
+      .hero-copy { padding-bottom: 0; }
+      .painter { position: static; height: 300px; margin: 24px auto 0; display: block; }
+      .note, .note-soft { display: none; }
+      .steps, .profile { grid-template-columns: 1fr; }
+      .vip-star { width: 280px; height: 280px; font-size: 20px; padding: 0 56px; }
+      .burst { display: none; }
+      .profile-copy { text-align: center; }
+      .profile-list { margin: 0 auto; }
+      .form-card { margin-top: 0; max-width: 420px; width: 100%; justify-self: center; }
+    }
+
+    @media (max-width: 480px) {
+      header { padding: 22px 20px 18px; }
+      .hero { padding: 36px 20px 0; }
+      h1 { font-size: 32px; }
+      .row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      header { padding: 10px 20px 8px; }
+      .brand { font-size: 26px; margin-left: 0; gap: 10px; }
+      .brand img { height: 56px; }
+
+      .hero { padding: 32px 20px 0; gap: 28px; }
+      h1 { font-size: 44px; }
+      .hero-info { max-width: 100%; font-size: 16px; }
+      .painter { display: none; }
+      .form-card { width: 100%; }
+      .form-panel { padding: 16px 14px 18px; }
+      .row { grid-template-columns: 1fr; }
+
+      .pains,
+      .how,
+      .profile,
+      .vip,
+      .cta { padding-left: 20px; padding-right: 20px; }
+
+      .pains,
+      .how { padding-top: 56px; padding-bottom: 56px; }
+      .pains h2,
+      .how h2,
+      .profile-copy h2 { font-size: 36px; margin-bottom: 36px; }
+
+      .pain { font-size: 20px; padding: 18px 16px; }
+      .step h3 { font-size: 20px; }
+      .step p { font-size: 16px; }
+      .how { margin-top: -60px; padding-top: 116px; padding-bottom: 240px; }
+
+      .profile { padding-top: 16px; padding-bottom: 16px; }
+      .profile-list { font-size: 20px; }
+      .profile-list li + li { margin-top: 24px; }
+      .cm-section { padding: 36px 8px 0; }
+      .profile { grid-template-columns: 1fr; align-items: start; }
+      .profile-copy h2 { font-size: 36px; margin-bottom: 36px; }
+      .profile-list { font-size: 20px; margin: 40px 0 0 0; }
+      .profile-list li + li { margin-top: 24px; }
+      .cm-section { padding: 36px 0 0; zoom: 0.8; }
+      .cm-phone { width: 340px; max-width: 100%; }
+
+      .vip { padding-top: 80px; padding-bottom: 110px; }
+      .cta { padding-top: 56px; }
+      .cta p { font-size: 24px; margin-bottom: 22px; }
+      .cta-btn { font-size: 16px; padding: 14px 28px; }
+      .vip-dots { display: none; }
+      .vip-waves-bottom { bottom: -2px; height: 84px; }
+      .lista-vip > .vip-wave:first-child { height: 24px; }
+      .cta-img { margin-top: -10px; }
+      .ico { box-shadow: 0 0 14px rgba(255, 138, 31, 0.6), 0 0 26px rgba(255, 138, 31, 0.3); }
+      .hero { padding-bottom: 90px; }
+      .typed-wrap > span { text-align: center; }
+    }
+
+.lista-vip{--morado:#7B0BDB;--morado-oscuro:#2A0052;--amarillo-1:#FFD866;--amarillo-2:#F7B71D;--blanco:#FFFFFF}
+
+  
+  
+  
+
+  .lista-vip{position:relative;color:var(--blanco)}
+  .vip-wave{display:block;width:100%;height:60px}
+  .vip-band{
+    background:var(--morado);
+    padding:40px 16px 56px;
+    position:relative;overflow:hidden;
+  }
+  .vip-band::before{
+    content:"";position:absolute;left:50%;top:50%;
+    width:620px;height:620px;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(255,216,102,.35) 0%,rgba(123,11,219,0) 65%);
+    pointer-events:none;
+  }
+  .vip-stage{
+    position:relative;max-width:1100px;height:460px;margin:0 auto;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  .lista-star{position:relative;width:420px;height:420px;filter:drop-shadow(0 18px 40px rgba(42,0,82,.45));animation:lista-glow 2.8s ease-in-out infinite}
+@keyframes lista-glow{
+0%,100%{filter:drop-shadow(0 0 16px rgba(255,216,102,.45)) drop-shadow(0 18px 40px rgba(42,0,82,.45))}
+50%{filter:drop-shadow(0 0 36px rgba(255,216,102,.9)) drop-shadow(0 18px 40px rgba(42,0,82,.45))}
+}
+  .lista-star::before,.lista-star::after{
+    content:"";position:absolute;inset:62px;
+    background:linear-gradient(135deg,var(--amarillo-1),var(--amarillo-2));
+    border-radius:6px;
+  }
+  .lista-star::after{transform:rotate(45deg)}
+  .lista-star-content{
+    position:absolute;inset:0;z-index:1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:0 90px;color:var(--morado-oscuro);
+  }
+  .vip-kicker{font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;opacity:.75;margin-bottom:10px}
+  .vip-title{font-size:30px;line-height:1.15;font-weight:800;margin-bottom:20px}
+  .vip-btn{
+    display:inline-block;text-decoration:none;
+    background:var(--morado-oscuro);color:var(--blanco);
+    font-weight:700;font-size:15px;
+    padding:13px 22px;border-radius:14px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .vip-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(42,0,82,.35)}
+
+  .vip-chip{
+    position:absolute;z-index:2;
+    display:flex;align-items:center;gap:12px;
+    background:var(--blanco);color:var(--morado-oscuro);
+    padding:12px 18px 12px 12px;border-radius:999px;
+    box-shadow:0 14px 30px rgba(42,0,82,.30);
+    font-weight:700;font-size:15px;white-space:nowrap;
+    animation:vip-float 5s ease-in-out infinite;
+  }
+  .vip-chip-icon{
+    width:38px;height:38px;border-radius:50%;flex-shrink:0;
+    background:var(--morado);color:var(--amarillo-1);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .vip-chip-icon svg{width:20px;height:20px}
+  .vip-chip small{display:block;font-size:12px;font-weight:500;color:#6B4E8F;margin-top:2px}
+
+  .vip-chip--1{left:2%;top:18%;transform:rotate(-4deg);animation-delay:0s}
+  .vip-chip--2{right:2%;top:30%;transform:rotate(3deg);animation-delay:1.2s}
+  .vip-chip--3{left:3%;bottom:10%;transform:rotate(2deg);animation-delay:2.4s}
+
+  @keyframes vip-float{
+    0%,100%{translate:0 0}
+    50%{translate:0 -10px}
+  }
+  @media (prefers-reduced-motion:reduce){.vip-chip{animation:none}}
+
+  @media (max-width:900px){
+    .vip-stage{height:auto;flex-direction:column;gap:14px}
+    .lista-star{width:340px;height:340px}
+    .lista-star::before,.lista-star::after{inset:50px}
+    .lista-star-content{padding:0 70px}
+    .vip-title{font-size:24px;margin-bottom:16px}
+    .vip-chip{position:static;transform:none;animation:none;width:100%;max-width:340px}
+  }
+  @media (max-width:380px){
+    .lista-star{width:300px;height:300px}
+    .lista-star::before,.lista-star::after{inset:44px}
+    .lista-star-content{padding:0 60px}
+    .vip-title{font-size:21px}
+    .vip-btn{font-size:14px;padding:11px 16px}
+  }
+
+
+  </style>
+</head>
+<body>
+  <header id="inicio">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="">
+      <span>Camello.</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>¿El boca a boca<br>no te consigue<br>el <span class="marker">CAMELLO</span><br>cuando lo<br>necesitas?</h1>
+        <div class="hero-info">
+          <p>Camello conecta a trabajadores independientes y prestadores de servicios de todo tipo con clientes cerca de ti que necesitan tu trabajo.</p>
+          <p><strong>¡Estamos por lanzar! Sé de los primeros en recibir camellos.</strong></p>
+        </div>
+        <img class="painter" src="assets/constructor.png" alt="Profesional de servicios">
+      </div>
+
+      <div class="note" aria-hidden="true">
+        <span>Sé de los primeros</span>
+        <svg viewBox="0 0 170 110">
+          <path d="M 30 4 C 30 58, 70 88, 150 84" />
+          <path d="M 136 74 L 152 84 L 138 96" />
+        </svg>
+      </div>
+
+      <div class="form-card">
+        <div class="form-title">Regístrate gratis</div>
+        <div class="form-panel">
+          <div class="thanks" id="thanks">
+            <h3>¡Listo, estás en la lista!</h3>
+            <p>Te avisaremos cuando Camello esté disponible en tu zona.</p>
+          </div>
+          <form id="prereg" novalidate>
+            <div class="row">
+              <div>
+                <label for="nombre">Tu nombre</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name">
+              </div>
+              <div>
+                <label for="celular">Número celular</label>
+                <input id="celular" name="celular" type="tel" autocomplete="tel">
+              </div>
+            </div>
+            <div class="error" id="err-campos"></div>
+
+            <div>
+              <label for="correo">Correo electrónico <small>(opcional)</small></label>
+              <input id="correo" name="correo" type="email" autocomplete="email">
+            </div>
+            <div class="error" id="err-correo"></div>
+
+            <div>
+              <label for="servicio">Camello que ofreces</label>
+              <select id="servicio" name="servicio">
+                <option value="">Selecciona uno</option>
+                <option>Electricidad</option>
+                <option>Pintura</option>
+                <option>Limpieza del hogar</option>
+                <option>Albañilería / maestro de obra</option>
+                <option>Carpintería</option>
+                <option>Cerrajería</option>
+                <option>Fletes y mudanzas</option>
+                <option>Jardinería</option>
+                <option>Reparación de electrodomésticos (línea blanca)</option>
+                <option>Otro</option>
+              </select>
+              <input class="otro" id="servicio-otro" name="servicio_otro" type="text" placeholder="Escribe cuál" hidden>
+            </div>
+
+            <div>
+              <label for="zona">Zona o sector</label>
+              <select id="zona" name="zona">
+                <option value="">Selecciona uno</option>
+                <option>Norte</option>
+                <option>Sur</option>
+                <option>Valle de los Chillos</option>
+                <option>Cumbayá</option>
+                <option>Otra</option>
+              </select>
+              <input class="otro" id="zona-otra" name="zona_otra" type="text" placeholder="Escribe tu zona" hidden>
+            </div>
+
+            <div>
+              <label for="pregunta">¿Tienes alguna pregunta para nosotros? <small>(opcional)</small></label>
+              <textarea id="pregunta" name="pregunta" rows="2"></textarea>
+            </div>
+
+            <label class="consent">
+              <input id="consent" name="consent" type="checkbox">
+              <span>Acepto que Camello me contacte y use mis datos para el lanzamiento.</span>
+            </label>
+            <div class="error" id="err-consent"></div>
+
+            <input name="honeypot" type="text" tabindex="-1" autocomplete="off" hidden>
+
+            <button class="btn" type="submit" id="enviar">Reservar mi lugar</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="pains">
+      <p class="eyebrow">EL PROBLEMA</p>
+      <h2>¿Te suena?</h2>
+      <div class="note-soft" aria-hidden="true">
+        <svg viewBox="0 0 90 60">
+          <path d="M 84 12 C 56 18, 30 28, 8 46" />
+          <path d="M 22 45 L 8 46 L 12 33" />
+        </svg>
+        <span>¿Eres tú?</span>
+      </div>
+      <div class="stack">
+        <div class="stack-front">
+          <div class="pain"><span class="num" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><p>Estar semanas o días sin trabajo.</p></div>
+          <div class="pain"><span class="num" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><p>Depender de recomendaciones para conseguir clientes.</p></div>
+          <div class="pain"><span class="num" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><p>Clientes que te dejan plantado o no pagan a tiempo.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how">
+      <svg class="how-bg" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 25 C 150 0, 260 50, 420 25 S 680 0, 800 25 S 960 45, 1000 20 V 470 C 860 500, 760 430, 600 460 S 330 500, 200 455 S 60 430, 0 470 Z" />
+      </svg>
+      <p class="eyebrow">CÓMO FUNCIONA</p>
+      <h2>Así de simple</h2>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <h3>Regístrate y elige tu servicio</h3>
+          <p>Cuéntanos qué haces, en qué zona trabajas y cuánto cobras.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <h3>Consigue Camellos cerca de ti</h3>
+          <p>Te llega un aviso a tu celular cuando alguien en tu zona necesita lo que ofreces y acuerdan disponibilidad.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <h3>Haz el trabajo y cobra</h3>
+          <p>Cumple bien, recibe tu pago y gana reseñas que te traen más clientes.</p>
+        </div>
+      </div>
+    </section>
+    <section class="profile">
+      <div class="profile-copy">
+        <p class="eyebrow">TU PERFIL</p>
+        <h2>Así te verán tus próximos clientes</h2>
+        <ul class="profile-list">
+          <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span>Tus servicios y tarifas transparentes.</li>
+          <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>Tu zona de atención bien clara.</li>
+          <li><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><polygon points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3 12 2"/></svg></span>Tus reseñas para construir reputación.</li>
+        </ul>
+      </div>
+
+      <div class="cm-section" aria-label="Así se verá tu perfil en Camello">
+        <div class="cm-phone">
+          <div class="cm-top">
+            <div class="cm-notch"></div>
+            <div class="cm-logo">Camello.</div>
+            <svg class="cm-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </div>
+
+          <div class="cm-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            Perfil verificado
+          </div>
+
+          <div class="cm-card">
+            <div class="cm-avatar">
+              <svg viewBox="0 0 100 100" width="100%" height="100%" role="img" aria-label="Jorge Paredes">
+                <rect width="100" height="100" fill="#8E2FE6"/>
+                <path d="M10 100 C12 80 30 72 50 72 C70 72 88 80 90 100 Z" fill="#3B7DD8"/>
+                <path d="M10 100 C12 82 26 74 40 72 L44 100 Z" fill="#8A8178"/>
+                <path d="M90 100 C88 82 74 74 60 72 L56 100 Z" fill="#8A8178"/>
+                <rect x="43" y="62" width="14" height="13" rx="4" fill="#C48760"/>
+                <circle cx="31" cy="50" r="5" fill="#C98E66"/>
+                <circle cx="69" cy="50" r="5" fill="#C98E66"/>
+                <path d="M31 40 C30 47 31 52 33 55 L36 42 Z" fill="#CFCFCF"/>
+                <path d="M69 40 C70 47 69 52 67 55 L64 42 Z" fill="#CFCFCF"/>
+                <ellipse cx="50" cy="49" rx="18" ry="21" fill="#D9A07A"/>
+                <path d="M33 52 C34 66 42 71 50 71 C58 71 66 66 67 52 C64 60 58 64 50 64 C42 64 36 60 33 52 Z" fill="#D8D8D8"/>
+                <path d="M30 40 C30 22 70 22 70 40 Z" fill="#2E3E5C"/>
+                <ellipse cx="50" cy="40" rx="23" ry="4.5" fill="#22304A"/>
+                <circle cx="50" cy="25" r="2" fill="#22304A"/>
+                <path d="M39 45 Q43 42.5 47 44.5" stroke="#9E9E9E" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                <path d="M53 44.5 Q57 42.5 61 45" stroke="#9E9E9E" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                <path d="M40 50 Q43 47 46 50" stroke="#3A2416" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <path d="M54 50 Q57 47 60 50" stroke="#3A2416" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <circle cx="38" cy="56" r="3.5" fill="#E58B6E" opacity=".45"/>
+                <circle cx="62" cy="56" r="3.5" fill="#E58B6E" opacity=".45"/>
+                <path d="M50 51 Q48 56 50.5 57" stroke="#B5795A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                <path d="M42 60 Q50 69 58 60 Z" fill="#FFFFFF" stroke="#5A2E1A" stroke-width="1.6" stroke-linejoin="round"/>
+                <path d="M41 59 Q46 55.5 50 58 Q54 55.5 59 59 Q50 61 41 59 Z" fill="#C4C4C4"/>
+              </svg>
+            </div>
+            <div class="cm-name">Jorge Paredes</div>
+            <div class="cm-service">Pintor · Norte de Quito</div>
+            <div class="cm-rating">
+              <span class="cm-stars">★★★★★</span> 4.9 <span class="cm-count">(38 reseñas)</span>
+            </div>
+
+            <div class="cm-stats">
+              <div class="cm-stat"><strong class="cm-price">$8</strong><small>por hora</small></div>
+              <div class="cm-stat"><strong>120</strong><small>camellos hechos</small></div>
+              <div class="cm-stat"><strong>12</strong><small>años de exp.</small></div>
+            </div>
+
+            <div class="cm-tags">
+              <span class="cm-tag">Interiores</span>
+              <span class="cm-tag">Fachadas</span>
+              <span class="cm-tag">Empaste</span>
+            </div>
+
+            <button class="cm-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l1.9-5.2A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
+              Enviar mensaje
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lista-vip" aria-labelledby="vip-title">
+      <svg class="vip-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 L0 8 C200 60 420 -5 720 28 S1180 62 1440 12 L1440 0 Z" fill="#FFFFFF"/>
+      </svg>
+
+      <div class="vip-band">
+        <div class="vip-stage">
+
+          <div class="vip-chip vip-chip--1">
+            <span class="vip-chip-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </span>
+            <span>Prioridad al lanzar<small>Activamos tu perfil primero</small></span>
+          </div>
+
+          <div class="vip-chip vip-chip--2">
+            <span class="vip-chip-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
+            </span>
+            <span>Perfil destacado<small>Más visible para los clientes</small></span>
+          </div>
+
+          <div class="vip-chip vip-chip--3">
+            <span class="vip-chip-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>
+            </span>
+            <span>Primeros en recibir camellos<small>Antes que nadie en tu zona</small></span>
+          </div>
+
+          <div class="lista-star">
+            <div class="lista-star-content">
+              <div class="vip-kicker">Cupos limitados</div>
+              <h2 class="vip-title" id="vip-title">Únete a la lista VIP de Lanzamiento</h2>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <svg class="vip-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 20 C240 60 480 60 720 40 C960 20 1200 10 1440 30 L1440 60 L0 60 Z" fill="#FFFFFF"/>
+      </svg>
+    </section>
+
+    <section class="cta">
+      <p>
+        <svg class="burst burst-l" viewBox="0 0 80 100" aria-hidden="true">
+          <path d="M8 14 L44 30" />
+          <path d="M4 50 L40 50" />
+          <path d="M8 86 L44 70" />
+        </svg>
+        <span class="typed-wrap">
+          <span class="typed-ghost" aria-hidden="true">No dejes que tu próximo trabajo dependa de la suerte.</span>
+          <span class="typed" data-text="No dejes que tu próximo trabajo dependa de la suerte."></span>
+        </span>
+        <svg class="burst burst-r" viewBox="0 0 80 100" aria-hidden="true">
+          <path d="M72 14 L36 30" />
+          <path d="M76 50 L40 50" />
+          <path d="M72 86 L36 70" />
+        </svg>
+      </p>
+      <a class="cta-btn" href="#">Reservar mi lugar</a>
+      <img class="cta-img" src="assets/latinos.png" alt="Personas de distintas edades y orígenes">
+    </section>
+  </main>
+
+  <footer>© Camello. Buen CAMELLO, para todos.</footer>
+
+  <script>
+    const ENDPOINT = 'https://script.google.com/macros/s/AKfycby4fLkWjSS_uQDbyOQ6q4oZmkGGbXQL0PoJcO_N9jrvfFfyCXTgYGGmjmxmkemGIpWHxw/exec';
+    const STORAGE_KEY = 'camello_prereg';
+
+    const form = document.getElementById('prereg');
+    const btn = document.getElementById('enviar');
+    const errCampos = document.getElementById('err-campos');
+    const errCorreo = document.getElementById('err-correo');
+    const errConsent = document.getElementById('err-consent');
+
+    document.querySelector('.cta-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const revealIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        revealIo.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('h1, h2').forEach((el) => {
+      el.classList.add('reveal');
+      revealIo.observe(el);
+    });
+
+    const typed = document.querySelector('.typed');
+    const fullText = typed.dataset.text;
+    let typedIndex = 0;
+    const typeIo = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      typeIo.disconnect();
+      const timer = setInterval(() => {
+        typedIndex++;
+        typed.textContent = fullText.slice(0, typedIndex);
+        if (typedIndex >= fullText.length) {
+          clearInterval(timer);
+          typed.classList.add('done');
+        }
+      }, 45);
+    }, { threshold: 0.6 });
+    typeIo.observe(typed);
+
+    function conectarOtro(selectId, inputId, valorOtro) {
+      const select = document.getElementById(selectId);
+      const input = document.getElementById(inputId);
+      select.addEventListener('change', () => {
+        input.hidden = select.value !== valorOtro;
+        if (input.hidden) input.value = '';
+      });
+    }
+    conectarOtro('servicio', 'servicio-otro', 'Otro');
+    conectarOtro('zona', 'zona-otra', 'Otra');
+    const thanks = document.getElementById('thanks');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errCampos.textContent = '';
+      errCorreo.textContent = '';
+      errConsent.textContent = '';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.nombre = data.nombre.trim();
+      data.celular = data.celular.trim();
+      data.correo = data.correo.trim();
+      data.consentimiento = document.getElementById('consent').checked ? 'Sí' : 'No';
+
+      let valido = true;
+      if (!data.nombre || !data.celular) {
+        errCampos.textContent = 'Nombre y celular son obligatorios.';
+        valido = false;
+      }
+      if (data.correo && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.correo)) {
+        errCorreo.textContent = 'Revisa el formato del correo.';
+        valido = false;
+      }
+      if (data.servicio === 'Otro' && !data.servicio_otro.trim()) {
+        errCampos.textContent = 'Escribe qué servicio ofreces.';
+        valido = false;
+      }
+      if (data.zona === 'Otra' && !data.zona_otra.trim()) {
+        errCampos.textContent = 'Escribe tu zona o sector.';
+        valido = false;
+      }
+      if (!document.getElementById('consent').checked) {
+        errConsent.textContent = 'Debes aceptar para continuar.';
+        valido = false;
+      }
+      if (!valido) return;
+
+      btn.disabled = true;
+      data.fecha = new Date().toISOString();
+
+      try {
+        await fetch(ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(data),
+        });
+
+        form.style.display = 'none';
+        thanks.style.display = 'block';
+      } catch (error) {
+        errCampos.textContent = 'No pudimos enviar tu registro. Intenta de nuevo.';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
