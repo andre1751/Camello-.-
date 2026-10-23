@@ -243,6 +243,22 @@
     .thanks { display: none; text-align: center; padding: 28px 0; color: var(--camello-dark); }
     .thanks h3 { color: var(--camello-sec); font-size: 20px; margin-bottom: 8px; }
     .thanks p { font-size: 14px; color: #444; }
+    .invite { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+    .invite-btn {
+      display: block;
+      padding: 12px 16px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--camello-dark);
+      color: #fff;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .invite-msg { font-size: 13px; color: #444; min-height: 18px; }
 
     .pains {
       position: relative;
@@ -1038,6 +1054,12 @@
           <div class="thanks" id="thanks">
             <h3>¡Listo, estás en la lista!</h3>
             <p>Te avisaremos cuando Camello esté disponible en tu zona.</p>
+            <div class="invite">
+              <p>¿Conoces a alguien que también necesite camellos?</p>
+              <a class="invite-btn" id="invite-wa" target="_blank" rel="noopener">Compartir por WhatsApp</a>
+              <button class="invite-btn" type="button" id="invite-copy">Copiar enlace</button>
+              <span class="invite-msg" id="invite-msg" aria-live="polite"></span>
+            </div>
           </div>
           <form id="prereg" novalidate>
             <div class="row">
@@ -1353,6 +1375,21 @@
     conectarOtro('servicio', 'servicio-otro', 'Otro');
     conectarOtro('zona', 'zona-otra', 'Otra');
     const thanks = document.getElementById('thanks');
+
+    const mensajeInvitacion = 'Acabo de apuntarme a Camello, la plataforma que conecta trabajadores independientes con clientes cerca de ti. Regístrate tú también: ' + window.location.href;
+    const inviteWa = document.getElementById('invite-wa');
+    const inviteCopy = document.getElementById('invite-copy');
+    const inviteMsg = document.getElementById('invite-msg');
+    inviteWa.href = 'https://wa.me/?text=' + encodeURIComponent(mensajeInvitacion);
+
+    inviteCopy.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(mensajeInvitacion);
+        inviteMsg.textContent = '¡Enlace copiado!';
+      } catch (error) {
+        inviteMsg.textContent = 'No pudimos copiarlo. Cópialo manualmente: ' + window.location.href;
+      }
+    });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
