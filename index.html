@@ -1108,7 +1108,7 @@
                 <input id="nombre" name="nombre" type="text" autocomplete="name">
               </div>
               <div>
-                <label for="celular">Número celular</label>
+                <label for="celular">Número de WhatsApp</label>
                 <input id="celular" name="celular" type="tel" autocomplete="tel">
               </div>
             </div>
@@ -1154,11 +1154,6 @@
               </div>
               <input class="otro" id="zona-otra" name="zona_otra" type="text" placeholder="Escribe tu zona" hidden>
             </fieldset>
-
-            <div>
-              <label for="pregunta">¿Tienes alguna pregunta para nosotros? <small>(opcional)</small></label>
-              <textarea id="pregunta" name="pregunta" rows="2"></textarea>
-            </div>
 
             <label class="consent">
               <input id="consent" name="consent" type="checkbox">
@@ -1457,7 +1452,7 @@
 
       let valido = true;
       if (!data.nombre || !data.celular) {
-        errCampos.textContent = 'Nombre y celular son obligatorios.';
+        errCampos.textContent = 'Nombre y número de WhatsApp son obligatorios.';
         valido = false;
       }
       if (data.correo && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.correo)) {
