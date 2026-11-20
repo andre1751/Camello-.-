@@ -23,9 +23,16 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
 
-  <!-- Vercel Analytics -->
-  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- Vercel Analytics: no se carga si el navegador tiene la marca "camello_ignorar_visitas" -->
+  <script>
+    if (localStorage.getItem('camello_ignorar_visitas') !== '1') {
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+      const va = document.createElement('script');
+      va.defer = true;
+      va.src = '/_vercel/insights/script.js';
+      document.head.appendChild(va);
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
